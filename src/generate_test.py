@@ -19,9 +19,9 @@
 import os, sys, subprocess
 import ntpath
 
-def generate_stdfile(txt_file,ttf_file):
+def generate_stdfile(txt_file,ttf_file,out_file):
 	inputfile=open(txt_file)
-	outputfile=open("std-test-out.txt","w")
+	outputfile=open(out_file,"w")
 
 	#Read the test-case input
 	flines=inputfile.readlines()
@@ -34,7 +34,7 @@ def generate_stdfile(txt_file,ttf_file):
 		# Write output to the output file
 		# print "Output : "	+output+"\n"
 		outputfile.write(words[0]+"\t"+""+output+"\n")
-	print("std-test-out.txt file generated!!")
+	print(out_file + " file generated!!")
 	outputfile.close()
 	inputfile.close()
 
@@ -47,6 +47,5 @@ if __name__ == "__main__":
  else:
         txt_file = sys.argv[1]
         font_file = ntpath.basename(sys.argv[2])
-        outfile = font_file[:-4] + "-std-test.txt"
-        print (outfile)
-        generate_stdfile(txt_file,font_file)
+        out_file = font_file[:-4] + "-std-test.txt"
+        generate_stdfile(txt_file,font_file,out_file)
