@@ -28,11 +28,12 @@ def generate_stdfile(txt_file,ttf_file,out_file):
 
 	#Exceute hb-shape command for each test-case from input file
 	for string in flines:
-		#print "String : "+string
+		# print ("String : " +string)
 		words=string.split()
+		# print (words[0])
 		status, output = subprocess.getstatusoutput("hb-shape %s %s"%(ttf_file,words[0]))
 		# Write output to the output file
-		# print "Output : "	+output+"\n"
+		# print ("Output : "	+output+"\n")
 		outputfile.write(words[0]+"\t"+""+output+"\n")
 	print(out_file + " file generated!!")
 	outputfile.close()
@@ -46,6 +47,6 @@ if __name__ == "__main__":
         print(" USAGE: python generate_test.py <test file> <font_file> ")
  else:
         txt_file = sys.argv[1]
-        font_file = ntpath.basename(sys.argv[2])
-        out_file = font_file[:-4] + "-std-test.txt"
+        font_file = sys.argv[2]
+        out_file = ntpath.basename(sys.argv[2])[:-4] + "-std-test.txt"
         generate_stdfile(txt_file,font_file,out_file)
