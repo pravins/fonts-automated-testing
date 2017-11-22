@@ -25,7 +25,7 @@ def auto_test(txt_file,ttf_file):
 	#Read the test-case input
 	flines=inputfile.readlines()
 	count=0
-        line=0
+	line=1
 
 	#Exceute hb-shape command for each test-case from output file
 	for string in flines:
@@ -33,11 +33,11 @@ def auto_test(txt_file,ttf_file):
 		status, output = subprocess.getstatusoutput("hb-shape %s %s"%(ttf_file,words[0]))
 		# Test to check, wheather test-case from output file & the result, are matching
 		if words[1] != output:
-			print(words[0]+ " [FAILURE]\n")
-			print("Line No:\n"+ line)
+			print(words[0]+ " [FAILURE]")
+			print("Line No: %d \n" %line)
 			outputfile.write("  *  "+words[0]+"\t"+""+output+"\n")
 			count=count+1
-                line=line+1
+		line=line+1
 
 	#Count for failed test-cases
 	print("%d Test Cases Failed out of %d"%(count,len(flines)))
